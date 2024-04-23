@@ -7,6 +7,7 @@ if (!isset($_SESSION['valid'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,10 +15,11 @@ if (!isset($_SESSION['valid'])) {
     <link rel="stylesheet" href="style/style.css">
     <title>Home</title>
 </head>
+
 <body>
     <div class="nav">
         <div class="logo">
-            <p><a href="home.php">Logo</a></p>
+            <a href="home.php"><img src="assets/Logo_fondo.svg" height="100%"></a>
         </div>
         <div class="right-links">
             <a href="edit.php"> <button class="btn">Modificar perfil</button> </a>
@@ -48,4 +50,5 @@ if (!isset($_SESSION['valid'])) {
         </div>
     </main>
 </body>
+
 </html>
