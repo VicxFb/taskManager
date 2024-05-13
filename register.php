@@ -1,47 +1,46 @@
-<?php
-include("php/config.php");
+<!DOCTYPE html>
+<html lang="en">
 
-if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $celular = $_POST['celular'];
-    $age = $_POST['age'];
-    $password = $_POST['password'];
-    $id_municipio = $_POST['id_municipio'];
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Register</title>
+</head>
 
-    // Generar un id_usuario único
-    $id_usuario = uniqid();
-    $verify_query = mysqli_query($con, "SELECT email_usuario FROM usuarios WHERE email_usuario='$email'");
+<body>
+    <div class="container">
+        <div class="box form-box">
+            <?php
+            include("php/config.php");
+            if (isset($_POST['submit'])) {
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $celular = $_POST['celular'];
+                $age = $_POST['age'];
+                $password = $_POST['password'];
+                $id_municipio = $_POST['id_municipio'];
 
-    if (mysqli_num_rows($verify_query) != 0) {
-        echo "<div class='message'>
-          <p>Este email está usado, ¡Intente con otro por favor!</p>
-      </div> <br>";
-        echo "<a href='javascript:self.history.back()'><button class='btn'>Volver atrás</button>";
-    } else {
-        mysqli_query($con, "INSERT INTO usuarios(id_usuario, nombre_usuario, email_usuario, celular_usuario, edad_usuario, password_usuario) VALUES('$id_usuario', '$username', '$email', '$celular', '$age', '$password')") or die("Error Occurred");
+                // Generar un id_usuario único
+                $id_usuario = uniqid();
+                $verify_query = mysqli_query($con, "SELECT email_usuario FROM usuarios WHERE email_usuario='$email'");
 
-        echo "<div class='message'>
-          <p>Registro realizado con éxito!</p>
-      </div> <br>";
-        echo "<a href='index.php'><button class='btn'>Iniciar sesión ahora</button>";
-    }
-} else {
-?>
-    <!DOCTYPE html>
-    <html lang="en">
+                if (mysqli_num_rows($verify_query) != 0) {
+                    echo "<div class='message'>
+                      <p>Este email está usado, ¡Intente con otro por favor!</p>
+                  </div> <br>";
+                    echo "<a href='javascript:self.history.back()'><button class='btn'>Volver atrás</button>";
+                } else {
+                    mysqli_query($con, "INSERT INTO usuarios(id_usuario, nombre_usuario, email_usuario, celular_usuario, edad_usuario, password_usuario) VALUES('$id_usuario', '$username', '$email', '$celular', '$age', '$password')") or die("Error Occurred");
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style/style.css">
-        <title>Register</title>
-    </head>
-
-    <body>
-        <div class="container">
-            <div class="box form-box">
+                    echo "<div class='message'>
+                      <p>Registro realizado con éxito!</p>
+                  </div> <br>";
+                    echo "<a href='index.php'><button class='btn'>Iniciar sesión ahora</button>";
+                }
+            } else {
+            ?>
                 <header>Registro</header>
                 <form action="" method="post">
                     <div class="field input">
@@ -131,18 +130,19 @@ if (isset($_POST['submit'])) {
                         Estas registrado? <a href="index.php">Iniciar sesión</a>
                     </div>
                 </form>
-            </div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            $('#password, #password2').on('keyup', function() {
-                if ($('#password').val() == $('#password2').val()) {
-                    $('#password-error').html('');
-                } else {
-                    $('#password-error').html('Las contraseñas no coinciden');
-                }
-            });
-        </script>
-    </body>
-    </html>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $('#password, #password2').on('keyup', function() {
+            if ($('#password').val() == $('#password2').val()) {
+                $('#password-error').html('');
+            } else {
+                $('#password-error').html('Las contraseñas no coinciden');
+            }
+        });
+    </script>
+</body>
+
+</html>
 <?php } ?>
