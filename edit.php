@@ -37,6 +37,7 @@ if (!isset($_SESSION['valid'])) {
                 $age = $_POST['age'];
                 $id = $_SESSION['id'];
 
+
                 // Subir imagen
                 $photo = $_FILES['photo']['name'];
                 $photo_temp = $_FILES['photo']['tmp_name'];
@@ -76,15 +77,14 @@ if (!isset($_SESSION['valid'])) {
                     $res_Age = $result['edad_usuario'];
                     $res_Photo = $result['foto_usuario'];
                 }
-
-                // Mostrar la foto predeterminada si el usuario no tiene una
-                if (empty($res_Photo)) {
-                    $res_Photo = 'default.jpg'; // Nombre de la foto predeterminada
-                }
             ?>
                 <div class="perfil">
-                    <img src="Imagenes/<?php echo $res_Photo ?>" />
-                </div>
+                    <?php if (!empty($res_Photo)) : ?>
+                        <img src="Imagenes/<?php echo $res_Photo ?>" />
+                    <?php else : ?>
+                        <img src="assets/default.jpg" />
+                    <?php endif; ?>
+                </div> 
                 <header>Modificar perfil</header>
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="field input">
