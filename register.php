@@ -32,8 +32,7 @@
                   </div> <br>";
                     echo "<a href='javascript:self.history.back()'><button class='btn'>Volver atrás</button>";
                 } else {
-                    mysqli_query($con, "INSERT INTO usuarios(id_usuario, nombre_usuario, email_usuario, celular_usuario, edad_usuario, password_usuario) VALUES('$id_usuario', '$username', '$email', '$celular', '$age', '$password')") or die("Error Occurred");
-
+                    mysqli_query($con, "INSERT INTO usuarios(id_usuario, nombre_usuario, email_usuario, celular_usuario, edad_usuario, password_usuario, id_municipio_usuario) VALUES('$id_usuario', '$username', '$email', '$celular', '$age', '$password', '$id_municipio')") or die("Error Occurred");
                     echo "<div class='message'>
                       <p>Registro realizado con éxito!</p>
                   </div> <br>";
